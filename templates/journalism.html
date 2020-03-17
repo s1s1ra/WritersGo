@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/journalism.css') }}">
+    <title>Journalism</title>
+</head>
+<body>
+    {% extends "template.html" %}
+  {% block content %}
+    <form action = "/journalism" method = "POST">
+        <div class = "essay-form">
+            <label for="name">Name:</label><br>
+            <input type="text" class="name" name="name"/><br>
+            <label for="email">Email:</label><br>
+            <input type="email" class="email" name="email" /><br>
+            <label for="college">College Name:</label><br>
+            <input type="text" class="college" name="college" /><br>
+            <label for="dob">Date of Birth:</label><br>
+            <input type="text" class="dob" name="dob" placeholder="ex:01/10/1999"/><br>
+            <label for="option">Essay Option:</label><br>
+            <input type="text" class="option" name="option"/><br>
+            <label for="essay">Essay:</label><br>
+            <textarea class="essay" name="essay" rows="20" cols="400" placeholder="Write your essay here"></textarea><br>
+            <input type = "submit" value = "submit" />
+        </div>
+     </form>
+  {% endblock %}
+    
+</body>
+</html>

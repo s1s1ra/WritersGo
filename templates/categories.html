@@ -12,11 +12,11 @@
 <body>
   {% extends "template.html" %}
   {% block content %}
-  <h1> Welcome {{ user }} </h1>
-  <div class="container" align="center">
+  <!-- <h1> Welcome {{ user }} </h1> -->
+  <div class="container" style="text-align: center;">
     <br>
     <h2 style="font-family: Roman">Choose any one :</h2><br><br>
-    <button type="button" class="btn btn-primary">Journalism</button><br><br>
+    <button type="button" class="btn btn-primary" onclick="window.location.href ='{{ url_for('journalism')}}' ">Journalism</button><br><br>
     <button type="button" class="btn btn-success">Creative Writing</button><br><br>
     <button type="button" class="btn btn-info">Book Review</button><br><br>
     <button type="button" class="btn btn-warning">Movie Review</button><br><br>
