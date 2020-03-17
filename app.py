@@ -32,9 +32,9 @@ config = {
 def home():
     return render_template('categories.html')
 
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
+#@app.route("/signup")
+#def signup():
+    #return render_template("signup.html")
 
 @app.route("/categories")
 def categories():
@@ -46,7 +46,6 @@ def categories():
 def journalism():
     if request.method == 'POST':
         name = request.form['name']
-        dob = request.form['dob']
         email = request.form['email']
         college = request.form['college']
         essay_option = request.form['option']
@@ -54,17 +53,10 @@ def journalism():
         print(name,dob,email)
         firebase = pyrebase.initialize_app(config)
         db = firebase.database()
-        db.child("journalism").push({"name":name,"email":email,"dob":dob,"college":college,"option":essay_option,"essay":essay})
+        db.child("journalism").push({"name":name,"email":email,"college":college,"option":essay_option,"essay":essay})
         print('DONE')
         return redirect(url_for('categories'))
     return render_template("journalism.html")
-
-@app.before_request
-def before_request():
-    g.user = None
-    
-    if 'user' in session:
-        g.user = session['user']
 
 if __name__ == "__main__":
     app.run(debug = True)
