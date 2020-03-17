@@ -41,6 +41,10 @@ def categories():
     # if g.user:
     #     return render_template('categories.html')
     return render_template('categories.html')
+  
+@app.route("/jtopic")
+def jtopic():
+    return render_template("jtopic.html",ch=0)
 
 @app.route("/journalism", methods = ['POST', 'GET'])
 def journalism():
