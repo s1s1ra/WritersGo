@@ -16,12 +16,13 @@
   <div class="container" style="text-align: center;">
     <br>
     <h2 style="font-family: Roman">Choose any one :</h2><br><br>
-    <button type="button" class="btn btn-primary" onclick="window.location.href ='{{ url_for('journalism')}}' ">Journalism</button><br><br>
-    <button type="button" class="btn btn-success">Creative Writing</button><br><br>
-    <button type="button" class="btn btn-info">Book Review</button><br><br>
-    <button type="button" class="btn btn-warning">Movie Review</button><br><br>
-    <button type="button" class="btn btn-danger">Diary Entry</button><br><br><br><br>
-  </div>
+    <div class="btn-grp" role="group" name="choice">
+    <button type="submit" name="0" class="btn btn-primary" onclick="window.location.href = '{{ url_for('jtopic') }}'">Journalism</button><br><br>
+    <button type="submit" name="1" class="btn btn-success" onclick="window.location.href = '{{ url_for('jtopic') }}'">Creative Writing</button><br><br>
+    <button type="submit" name="2" class="btn btn-info" onclick="window.location.href = '{{ url_for('jtopic') }}'">Book Review</button><br><br>
+    <button type="submit" name="3" class="btn btn-warning" onclick="window.location.href = '{{ url_for('jtopic') }}'">Movie Review</button><br><br>
+    <button type="submit" name="4" class="btn btn-danger" onclick="window.location.href = '{{ url_for('jtopic') }}'">Diary Entry</button><br><br><br><br>
+    </div>
   {% endblock %}
 </body>
 </html>

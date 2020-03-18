@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static',     filename='css/c.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="{{url_for('static', filename='js/o.js')}}"></script>
+</head>
+<body onload="topics({{ ch }})">
+  {% extends "template.html" %}
+  {% block content %}
+  <div class="container" style="text-align: center;">
+    <br>
+
+    <h2 style="font-family: Roman">Your topic : </h2><br>
+    <h3 id="demo" style="font-family:Optima; font-weight:bold;"></h3><br>
+    <button type="button" class="btn btn-danger" style="width: 30%;" onclick="topics({{ ch }})">Try Again</button><br><br>
+    <button type="button" class="btn btn-success" style="width: 30%;" onclick="window.location.href='{{ url_for('journalism') }}'">Ok!</button><br><br><br><br>
+  </div>
+  {% endblock %}
+</body>
+</html>

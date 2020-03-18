@@ -15,4 +15,4 @@ firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
 
-db.child("journalism").push({"name":"name","email":"email","dob":"dob","college":"college","option":"essay_option","essay":"essay"})
+db.child("journalism").push({"name":"name","email":"email","college":"college","option":"essay_option","essay":"essay"})
