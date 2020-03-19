@@ -6,6 +6,12 @@ body {
    background-color: #00056b;
    color: white;
  }
+ #cover {
+   position: fixed;
+   background: url("https://user-images.githubusercontent.com/46837462/77035599-1cc65f80-69d3-11ea-8b7c-cb440dea4bdd.gif") no-repeat scroll center center #FFF;
+   height: 100%;
+   width: 100%;
+}
 .btn {
   font-family: Courier;
   font-size: 20px;
