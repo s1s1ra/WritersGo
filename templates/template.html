@@ -8,8 +8,14 @@
   <link rel="stylesheet" href="{{ url_for('static',     filename='css/c.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  $(window).on('load', function(){
+    $('#cover').fadeOut(1000);
+  })
+  </script>
 </head>
 <body>
+  <div id="cover"></div>
   <div class="jumbotron">
     <div class="container text-center">
       <p><img src="https://user-images.githubusercontent.com/46837462/76746955-5bbf9f80-679e-11ea-88ff-55afb2e8ce21.jpg" style="width:5%;
@@ -19,15 +25,6 @@
   </div>
   {% block content %}
   {% endblock %}
-  <!--<div class="container" align="center">
-    <br>
-    <h2 style="font-family: Roman">Choose any one :</h2><br><br>
-    <button type="button" class="btn btn-primary">Journalism</button><br><br>
-    <button type="button" class="btn btn-success">Creative Writing</button><br><br>
-    <button type="button" class="btn btn-info">Book Review</button><br><br>
-    <button type="button" class="btn btn-warning">Movie Review</button><br><br>
-    <button type="button" class="btn btn-danger">Diary Entry</button><br><br><br><br>
-  </div>-->
   <footer class="container-fluid" style="position: relative;">
     <p style="font-family: Times New Roman; font-size: 15px">Find us on social media : </p>
     <a href="https://www.facebook.com/TranscendentCBIT/" class="fa fa-facebook" target="_blank"></a>
