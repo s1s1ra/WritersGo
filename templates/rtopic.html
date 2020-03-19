@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static',     filename='css/ca.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  var temp = {{ t|tojson }};
+  temp.shift();
+  var list = [];
+  function topics(){
+    var c = {{ ch }};
+    var i,j;
+    switch(c){
+      case 0: i = 0; j = 9;
+        break;
+      case 1: i = 10; j = 19;
+        break;
+      case 2: i = 20; j = 29;
+        break;
+      case 3: i = 30; j = 39;
+        break;
+      case 4: i = 40; j = 49;
+        break;
+      }
+      for(var k=i;k<=j;k++){
+        list.push(k);
+      }
+      disp();
+    }
+  function disp(){
+      var rand = Math.floor(Math.random() * 10);
+      document.getElementById("demo").value = list[rand];
+      document.getElementById("demo1").value = temp[rand];
+  }
+  </script>
+</head>
+<body onload="topics()">
+  {% extends "template.html" %}
+  {% block content %}
+  <div class="container" style="text-align: center;">
+    <br>
+    <h2 style="font-family: Roman">Your topic : </h2><br>
+    <form action="/jtopic" method="post">
+      <div class = "form-group">
+          <input type="hidden" name="topicID" id="demo"/>
+          <input name="topic" class="form-control form-control-lg" type="text" id="demo1" style="font-family:Optima; font-weight:bold; font-size:130%; text-align:center;" readonly/>
+      </div>
+      <br>
+      <button type="button" class="btn btn-danger" style="width: 30%;" onclick="disp()">Try Again</button><br><br>
+      <button type="submit" class="btn btn-success" style="width: 30%;">Ok!</button><br><br>
+      <button type="button" class="btn btn-info" style="width: 30%;" onclick="window.location.href='{{ url_for('review')}}'">Custom</button><br><br>
+      <label> (Enter your own topic) </label><br><br><br>
+    </form>
+  </div>
+  {% endblock %}
+</body>
+</html>
