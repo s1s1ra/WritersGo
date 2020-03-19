@@ -23,9 +23,9 @@ config = {
 
 
 
-# db = firebase.database()
-
-# db.child("journalism").push({"name":"Satya","text":"Hello World","dob":"01-10-1999"})
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+db = firebase.database()
 
 
 @app.route("/", methods = ['GET','POST'])
@@ -42,25 +42,78 @@ def categories():
     #     return render_template('categories.html')
     return render_template('categories.html')
   
-@app.route("/jtopic")
+@app.route("/jtopic", methods = ['GET','POST'])
 def jtopic():
-    return render_template("jtopic.html",ch=0)
+    if request.method=="POST":
+        topic=request.form.get("topicID")
+        return redirect(url_for('journalism', t = str(topic)))
+    temp = db.child("topics/J").get().val();
+    return render_template("jtopic.html",t=temp,ch=0)
+@app.route("/ctopic")
+def ctopic():
+    if request.method=="POST":
+        topic=request.form.get("topicID")
+        return redirect(url_for('journalism', t = str(topic)))
+    temp = db.child("topics/C").get().val();
+    return render_template("jtopic.html",t=temp,ch=1)
+@app.route("/btopic")
+def btopic():
+    if request.method=="POST":
+        topic=request.form.get("topicID")
+        return redirect(url_for('journalism', t = str(topic)))
+    temp = db.child("topics/B").get().val();
+    return render_template("rtopic.html",t=temp,ch=2)
+@app.route("/mtopic")
+def mtopic():
+    if request.method=="POST":
+        topic=request.form.get("topicID")
+        return redirect(url_for('journalism', t = str(topic)))
+    temp = db.child("topics/M").get().val();
+    return render_template("rtopic.html",t=temp,ch=3)
+@app.route("/dtopic")
+def dtopic():
+    if request.method=="POST":
+        topic=request.form.get("topicID")
+        return redirect(url_for('journalism', t = str(topic)))
+    firebase = pyrebase.initialize_app(config)
+    temp = db.child("topics/D").get().val();
+    return render_template("jtopic.html",t=temp,ch=4)
 
-@app.route("/journalism", methods = ['POST', 'GET'])
-def journalism():
+@app.route("/send", methods = ['POST', 'GET'])
+def send():
     if request.method == 'POST':
         name = request.form['name']
+        lname = request.form['lname']
         email = request.form['email']
+        phn = request.form['phone']
         college = request.form['college']
         essay_option = request.form['option']
-        essay = request.form['essay']
-        print(name,dob,email)
-        firebase = pyrebase.initialize_app(config)
-        db = firebase.database()
-        db.child("journalism").push({"name":name,"email":email,"college":college,"option":essay_option,"essay":essay})
+        essay = request.files['essay']
+        loc = "entries/"+str(name)+essay_option[:5]
+        storage.child(loc).put(essay)
+        path = storage.child(loc).get_url(None)
+        db.child("details").push({"name":name,"email":email,"phone":phn,"college":college,"option":essay_option,"essay":path})
         print('DONE')
-        return redirect(url_for('categories'))
-    return render_template("journalism.html")
+        return redirect(url_for('success'))
+
+@app.route("/review")
+def review():
+    return render_template("review.html")
+
+
+@app.route("/journalism/<t>")
+def journalism(t):
+    k = int(int(t)/10)
+    print(k)
+    dic = ['J','C','B','M','D']
+    key = "topics/"+dic[k]
+    temp = db.child(key).get().val()
+    temp.pop(0)
+    return render_template("journalism.html" ,topic=temp[int(t)%10])
+
+@app.route("/success")
+def success():
+    return render_template("success.html")
 
 if __name__ == "__main__":
     app.run(debug = True)
