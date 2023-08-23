@@ -1,7 +1,18 @@
 # WritersGo
 
-![tdlogo](https://user-images.githubusercontent.com/46837462/76746955-5bbf9f80-679e-11ea-88ff-55afb2e8ce21.jpg)
+This is an online portal for our College Writing Club to organize a Writing Competition online. We used Flask's internal template engine for front-end and Google Firebase for back-end. The topics for the competition as well as the user entries are stored in Firebase. For each user, a topic is generated randomly from the list of topics in the DB.
 
-![login](https://user-images.githubusercontent.com/46837462/76748125-39c71c80-67a0-11ea-8775-803d8510da54.png)
+## How to Run
 
-![ajax-loader](https://user-images.githubusercontent.com/46837462/77035599-1cc65f80-69d3-11ea-8b7c-cb440dea4bdd.gif)
+> Download/clone the repository\
+> cd WritersGo\
+> Create a virtual environment venv\
+> run venv/scripts/activate\
+> run python -m pip install flask\
+> run python -m pip install pyrebase4\
+> run python -m flask run\
+
+## Output
+
+![Img not found](readme/page1.png)
+
